@@ -128,26 +128,50 @@
         <!--Sign In View Controller-->
         <scene sceneID="MZo-md-Ftw">
             <objects>
-                <viewController storyboardIdentifier="SignInViewController" id="Iap-fz-dIl" customClass="SignInViewController" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" hidesBottomBarWhenPushed="YES" id="Iap-fz-dIl" customClass="SignInViewController" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OcP-5b-CxX">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0g5-q4-lCa">
-                                <rect key="frame" x="175" y="428" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="rCq-KV-tLG" customClass="PaddedTextField" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
+                                <rect key="frame" x="16" y="134" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-yo-jMY" customClass="PaddedTextField" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
+                                <rect key="frame" x="16" y="184" width="361" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="continue" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzj-Kd-0EG">
+                                <rect key="frame" x="16" y="234.00000000000003" width="361" height="50.333333333333343"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Sign In" buttonSize="large"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GwP-eE-yUR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="top" secondItem="lRI-yo-jMY" secondAttribute="bottom" constant="16" id="0ee-2c-DWO"/>
+                            <constraint firstItem="rCq-KV-tLG" firstAttribute="top" secondItem="GwP-eE-yUR" secondAttribute="top" constant="16" id="CaJ-Lt-qjt"/>
+                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="top" secondItem="lRI-yo-jMY" secondAttribute="bottom" constant="16" id="CsN-qV-0yr"/>
+                            <constraint firstItem="lRI-yo-jMY" firstAttribute="top" secondItem="rCq-KV-tLG" secondAttribute="bottom" constant="16" id="LQ7-O6-lY2"/>
+                            <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="rCq-KV-tLG" secondAttribute="trailing" constant="16" id="cyg-ji-q0y"/>
+                            <constraint firstItem="lRI-yo-jMY" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="fPz-4L-hoL"/>
+                            <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="lRI-yo-jMY" secondAttribute="trailing" constant="16" id="hGP-Dc-JM3"/>
+                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="mwq-09-rCc"/>
+                            <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="Jzj-Kd-0EG" secondAttribute="trailing" constant="16" id="qdD-g1-xo8"/>
+                            <constraint firstItem="rCq-KV-tLG" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="seB-y9-MP4"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="rCq-KV-tLG" id="22k-Ic-6RQ"/>
+                        <outlet property="passwordTextField" destination="lRI-yo-jMY" id="GEO-A1-yfF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tVs-I6-gKZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2882" y="729"/>
+            <point key="canvasLocation" x="2881.679389312977" y="728.87323943661977"/>
         </scene>
     </scenes>
     <resources>
