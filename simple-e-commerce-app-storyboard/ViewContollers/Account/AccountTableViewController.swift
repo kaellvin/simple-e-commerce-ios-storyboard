@@ -9,27 +9,24 @@ import UIKit
 
 class AccountTableViewController: UITableViewController {
     
-    @IBOutlet weak var tableVIew: UINavigationItem!
-    
     struct AccountMenu {
         let title: String
         let iconName: String
     }
+    
     let menuList = [
         AccountMenu(title: "Sign In", iconName: "person.fill"),
-        AccountMenu(title: "Sign Up", iconName: "person.crop.circle.badge.plus"),
+        //TODO:
+//        AccountMenu(title: "Sign Out", iconName: "person.crop.circle.badge.plus"),
+        AccountMenu(title: "Sign Up", iconName: "rectangle.portrait.and.arrow.right"),
+        AccountMenu(title: "About App", iconName: "info.circle.fill"),
     ]
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        tableView.separatorStyle = .singleLine
     }
 
     // MARK: - Table view data source
@@ -43,13 +40,39 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = menuList[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! AccountTableViewCell
-        cell.label.text = item.title
-        cell.iconImageView.image = UIImage(systemName: item.iconName)
+        let menu = menuList[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.text = menu.title
+        content.image = UIImage(systemName: menu.iconName)
+        cell.contentConfiguration = content
+        
+        if menu.title != "About App" {
+            cell.accessoryType = .disclosureIndicator
+            cell.selectionStyle = .default
+        }else {
+            cell.accessoryType = .none
+            cell.selectionStyle = .none
+        }
 
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: false)
+        
+        let menu = menuList[indexPath.row]
+        switch menu.title {
+        case "Sign In":
+            let signInVC =  storyboard?.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+            signInVC.title = "Sign In"
+            navigationController?.pushViewController(signInVC, animated: true)
+        default:
+            break
+        }
+    }
+    
     
 
     /*
