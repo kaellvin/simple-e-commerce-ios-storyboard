@@ -1,0 +1,19 @@
+//
+//  ViewController.swift
+//  simple-e-commerce-app-storyboard
+//
+//  Created by Kelvin Leong on 31/12/2025.
+//
+
+import UIKit
+
+class ViewController: UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+    }
+
+
+}
+
