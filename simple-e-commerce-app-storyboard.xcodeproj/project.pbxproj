@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DBA1A1A42F07A4C900E39947 /* Auth in Frameworks */ = {isa = PBXBuildFile; productRef = DBA1A1A32F07A4C900E39947 /* Auth */; };
+		DBA1A1A62F07A4C900E39947 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = DBA1A1A52F07A4C900E39947 /* Supabase */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		DB2C82622F04FC3C00C09DC2 /* simple-e-commerce-app-storyboard.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-e-commerce-app-storyboard.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBA1A1A62F07A4C900E39947 /* Supabase in Frameworks */,
+				DBA1A1A42F07A4C900E39947 /* Auth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +85,8 @@
 			);
 			name = "simple-e-commerce-app-storyboard";
 			packageProductDependencies = (
+				DBA1A1A32F07A4C900E39947 /* Auth */,
+				DBA1A1A52F07A4C900E39947 /* Supabase */,
 			);
 			productName = "simple-e-commerce-app-storyboard";
 			productReference = DB2C82622F04FC3C00C09DC2 /* simple-e-commerce-app-storyboard.app */;
@@ -107,6 +116,9 @@
 			);
 			mainGroup = DB2C82592F04FC3C00C09DC2;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				DBA1A1A22F07A4C900E39947 /* XCRemoteSwiftPackageReference "supabase-swift" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = DB2C82632F04FC3C00C09DC2 /* Products */;
 			projectDirPath = "";
@@ -333,6 +345,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		DBA1A1A22F07A4C900E39947 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/supabase-community/supabase-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.5.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		DBA1A1A32F07A4C900E39947 /* Auth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBA1A1A22F07A4C900E39947 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Auth;
+		};
+		DBA1A1A52F07A4C900E39947 /* Supabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = DBA1A1A22F07A4C900E39947 /* XCRemoteSwiftPackageReference "supabase-swift" */;
+			productName = Supabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = DB2C825A2F04FC3C00C09DC2 /* Project object */;
 }
