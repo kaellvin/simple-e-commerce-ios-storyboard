@@ -19,14 +19,21 @@ class AccountTableViewController: UITableViewController {
     
     private var viewModel = AccountViewModel(authRepository: DefaultAuthRepository())
     private var cancellables = Set<AnyCancellable>()
+    private var didAppear: PassthroughSubject<Void,Never> = .init()
     
     private var previousIsSignedIn = false
+    private var userEmail = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
         
         tableView.separatorStyle = .singleLine
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        didAppear.send(())
     }
     
     private func bind() {
@@ -51,29 +58,24 @@ class AccountTableViewController: UITableViewController {
                 filteredMenuList.append(AccountMenu(title: "About App", iconName: "info.circle.fill"))
                 
                 self.menuList = filteredMenuList
-
-                //NOTE: defer to next run loop
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
+                self.tableView.reloadData()
+                
                 if previousIsSignedIn == true && isSignedIn == false {
                     self.showToast(message: "Sign out successfully.")
                 }
                 
                 self.previousIsSignedIn = isSignedIn
-
+                
             }
             .store(in: &cancellables)
         
         viewModel
             .$userEmail
-            .sink { [weak self] userEmail in
+            .combineLatest(didAppear)
+            .sink { [weak self] (userEmail,_) in
                 guard let self else { return }
-                //NOTE: defer to next run loop
-                DispatchQueue.main.async {
-                    self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
-                }
-
+                self.userEmail = userEmail
+                self.tableView.reloadSections(IndexSet(integer: 0), with: .none)
             }
             .store(in: &cancellables)
         
@@ -132,7 +134,6 @@ class AccountTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let userEmail = viewModel.userEmail
         if !userEmail.isEmpty {
             return "Logged in as \(userEmail)"
         }
