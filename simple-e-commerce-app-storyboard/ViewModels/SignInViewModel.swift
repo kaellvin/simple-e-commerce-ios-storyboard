@@ -19,7 +19,7 @@ class SignInViewModel {
     @Published var emailError: FormValidationError?
     @Published var password: String = ""
     @Published var passwordError: FormValidationError?
-    var status = LoadingStatus.idle
+    @Published var status = LoadingStatus.idle
     
     func validateEmail() {
         guard !email.isEmpty else {

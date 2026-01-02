@@ -16,7 +16,6 @@ extension UITextField {
         
         let iconImage = UIImage(systemName: systemName)
         let overlayImageView = UIImageView(image: iconImage)
-        overlayImageView.tintColor = .black
         overlayImageView.frame = CGRect(x: leftPadding, y: 0, width: width, height: height)
         overlayImageView.contentMode = .scaleAspectFit
         
@@ -32,7 +31,6 @@ extension UITextField {
         let rightPadding = 12
 
         let button = UIButton(type: .system)
-        button.tintColor = .black
         button.setImage(UIImage(systemName: "eye"), for: .normal)
         button.frame =  CGRect(x: 0, y: 0, width: width, height: height)
         button.contentVerticalAlignment = .fill

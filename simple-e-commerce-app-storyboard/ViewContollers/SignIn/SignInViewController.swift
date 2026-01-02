@@ -77,33 +77,32 @@ class SignInViewController: UIViewController {
             .assign(to: \.text, on: passwordErrorLabel)
             .store(in: &cancellables)
         
-//        viewModel
-//            .$passwordError
-//            .sink { passwordError in
-//                self.passwordErrorLabel.text = passwordError?.name ?? ""
-//            }
-//            .store(in: &cancellables)
+        viewModel
+            .$status
+            .sink { [weak self] status in
+                guard let self else { return }
+                switch status {
+                case let .failure(message):
+                    self.showAlert(title: "Sign In Failed", message: message)
+                case .success:
+                    self.showToast(message: "Login successfully.")
+                    navigationController?.popViewController(animated: true)
+                default:
+                    break
+                }
+            }
+            .store(in: &cancellables)
+        
+        
+        //        viewModel
+        //            .$passwordError
+        //            .sink { passwordError in
+        //                self.passwordErrorLabel.text = passwordError?.name ?? ""
+        //            }
+        //            .store(in: &cancellables)
         
         
     }
-    
-    deinit {
-        print("SHOULD EXIT")
-    }
-    
-    
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
     
 }
 
