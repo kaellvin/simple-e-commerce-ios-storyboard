@@ -138,34 +138,56 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-yo-jMY" customClass="PaddedTextField" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
-                                <rect key="frame" x="16" y="184" width="361" height="34"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="63g-Xf-syO">
+                                <rect key="frame" x="16" y="172" width="361" height="14.333333333333343"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lRI-yo-jMY" customClass="PaddedTextField" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
+                                <rect key="frame" x="16" y="194.33333333333334" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="continue" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="continue"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nb5-go-enf">
+                                <rect key="frame" x="16" y="232.33333333333334" width="361" height="14.333333333333343"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                <color key="textColor" systemColor="systemRedColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzj-Kd-0EG">
-                                <rect key="frame" x="16" y="234.00000000000003" width="361" height="50.333333333333343"/>
+                                <rect key="frame" x="16" y="254.66666666666666" width="361" height="50.333333333333343"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Sign In" buttonSize="large"/>
+                                <connections>
+                                    <action selector="signInButtonClicked:" destination="Iap-fz-dIl" eventType="touchUpInside" id="YeB-Id-kzU"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GwP-eE-yUR"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="top" secondItem="lRI-yo-jMY" secondAttribute="bottom" constant="16" id="0ee-2c-DWO"/>
+                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="top" secondItem="Nb5-go-enf" secondAttribute="bottom" constant="8" id="0ee-2c-DWO"/>
+                            <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="63g-Xf-syO" secondAttribute="trailing" constant="16" id="6Aj-HU-3uD"/>
+                            <constraint firstItem="Nb5-go-enf" firstAttribute="top" secondItem="lRI-yo-jMY" secondAttribute="bottom" constant="4" id="9aC-hD-ufu"/>
                             <constraint firstItem="rCq-KV-tLG" firstAttribute="top" secondItem="GwP-eE-yUR" secondAttribute="top" constant="16" id="CaJ-Lt-qjt"/>
-                            <constraint firstItem="Jzj-Kd-0EG" firstAttribute="top" secondItem="lRI-yo-jMY" secondAttribute="bottom" constant="16" id="CsN-qV-0yr"/>
-                            <constraint firstItem="lRI-yo-jMY" firstAttribute="top" secondItem="rCq-KV-tLG" secondAttribute="bottom" constant="16" id="LQ7-O6-lY2"/>
+                            <constraint firstItem="63g-Xf-syO" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="FGq-Ta-xS6"/>
+                            <constraint firstItem="Nb5-go-enf" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="KlV-Ya-Zgw"/>
+                            <constraint firstItem="lRI-yo-jMY" firstAttribute="top" secondItem="63g-Xf-syO" secondAttribute="bottom" constant="8" id="LQ7-O6-lY2"/>
                             <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="rCq-KV-tLG" secondAttribute="trailing" constant="16" id="cyg-ji-q0y"/>
                             <constraint firstItem="lRI-yo-jMY" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="fPz-4L-hoL"/>
                             <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="lRI-yo-jMY" secondAttribute="trailing" constant="16" id="hGP-Dc-JM3"/>
                             <constraint firstItem="Jzj-Kd-0EG" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="mwq-09-rCc"/>
                             <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="Jzj-Kd-0EG" secondAttribute="trailing" constant="16" id="qdD-g1-xo8"/>
                             <constraint firstItem="rCq-KV-tLG" firstAttribute="leading" secondItem="GwP-eE-yUR" secondAttribute="leading" constant="16" id="seB-y9-MP4"/>
+                            <constraint firstItem="GwP-eE-yUR" firstAttribute="trailing" secondItem="Nb5-go-enf" secondAttribute="trailing" constant="16" id="xr8-DF-GkM"/>
+                            <constraint firstItem="63g-Xf-syO" firstAttribute="top" secondItem="rCq-KV-tLG" secondAttribute="bottom" constant="4" id="y0H-iV-3GC"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="emailErrorLabel" destination="63g-Xf-syO" id="blo-hi-PUw"/>
                         <outlet property="emailTextField" destination="rCq-KV-tLG" id="22k-Ic-6RQ"/>
+                        <outlet property="passwordErrorLabel" destination="Nb5-go-enf" id="tzt-Ue-eKu"/>
                         <outlet property="passwordTextField" destination="lRI-yo-jMY" id="GEO-A1-yfF"/>
                     </connections>
                 </viewController>
@@ -180,6 +202,9 @@
         <image name="person.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
