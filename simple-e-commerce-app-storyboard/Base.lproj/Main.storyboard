@@ -195,6 +195,21 @@
             </objects>
             <point key="canvasLocation" x="2881.679389312977" y="728.87323943661977"/>
         </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="Qr8-XO-XGb">
+            <objects>
+                <viewController storyboardIdentifier="SignUpViewController" hidesBottomBarWhenPushed="YES" id="aB4-sf-kZp" customClass="SignUpViewController" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vaD-Q6-UbA">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="rq8-j5-ElY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jYA-j9-5QI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3834" y="729"/>
+        </scene>
     </scenes>
     <resources>
         <image name="cart" catalog="system" width="128" height="102"/>

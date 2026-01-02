@@ -11,7 +11,7 @@ import Supabase
 class DefaultAuthRepository : BaseRepository, AuthRepository {
     
     func signUp(email: String, password: String) async throws {
- 
+        
     }
     
     func signIn(email: String, password: String) async throws {
@@ -28,7 +28,17 @@ class DefaultAuthRepository : BaseRepository, AuthRepository {
     }
     
     func signOut() async throws {
-
+        do {
+            try await supabaseManager.auth.signOut()
+            
+        } catch let error as APIError {
+            logError(error: error)
+            throw RepositoryError.networkError
+        } catch let error as Supabase.AuthError {
+            throw RepositoryError.authError(error.localizedDescription)
+        } catch {
+            throw RepositoryError.unknownError
+        }
     }
     
     lazy var sessionInfoStream = AsyncStream(SessionInfo?.self) { continuation in
