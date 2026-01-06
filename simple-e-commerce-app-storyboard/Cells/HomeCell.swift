@@ -19,7 +19,7 @@ class HomeCell: UICollectionViewCell {
         layer.shadowOpacity = 0.3
         layer.shadowOffset = CGSize(width: 5, height: 5)
         layer.shadowRadius = 5
-
+        
         
         contentView.layer.cornerRadius = 16
         
@@ -27,7 +27,7 @@ class HomeCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         layer.shadowPath = UIBezierPath(
             roundedRect: bounds,
             cornerRadius: 16
@@ -35,14 +35,10 @@ class HomeCell: UICollectionViewCell {
     }
     
     func configure(with product: Product) {
-        guard let url = URL(string: product.imageUrl) else { return }
-        //TODO: refactor
         Task {
-            if let (data,_) = try? await URLSession.shared.data(from: url), let image = UIImage(data: data) {
-                await MainActor.run {
-                    productImageView.image = image
-                }
-                
+            let image = await ImageLoader.shared.loadImage(from: product.imageUrl)
+            await MainActor.run {
+                productImageView.image = image
             }
         }
         productName.text = product.name

@@ -37,7 +37,8 @@ class HomeViewController: UIViewController {
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
-        coordinator.animate(alongsideTransition: { _ in
+        coordinator.animate(alongsideTransition: { [weak self] _ in
+            guard let self else { return }
             self.collectionView.collectionViewLayout.invalidateLayout()
         })
     }
@@ -65,8 +66,16 @@ extension HomeViewController : UICollectionViewDataSource {
         cell.configure(with: product)
         return cell
     }
+}
+extension HomeViewController: UICollectionViewDelegate {
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let product = viewModel.products[indexPath.row]
+        let productDetailVC = storyboard!.instantiateViewController(identifier: "ProductDetailViewController") { coder in
+            ProductDetailViewController(coder: coder,id: product.id)
+        }
+        navigationController?.pushViewController(productDetailVC, animated: true)
+    }
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
@@ -95,6 +104,5 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         16
     }
-
 
 }

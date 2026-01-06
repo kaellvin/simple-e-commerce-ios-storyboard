@@ -10,5 +10,5 @@ import Foundation
 protocol ProductRepository {
     
     func getProducts(keyword: String?) async throws -> [Product]
-//    func getProduct(productId: String) async throws -> ProductDetail?
+    func getProduct(productId: String) async throws -> ProductDetail?
 }

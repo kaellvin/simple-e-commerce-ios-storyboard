@@ -24,8 +24,18 @@ class DefaultProductRepository: BaseRepository, ProductRepository {
 
     }
     
-//    func getProduct(productId: String) async throws -> ProductDetail? {
-//
-//    }
+    func getProduct(productId: String) async throws -> ProductDetail? {
+        do {
+            let data = try await request(endpoint: ProductAPI.getProduct(productId: productId))
+            let response = try decode(APIResponse<ProductDetailDto?>.self, data: data)
+            return response.data?.toDomain()
+            
+        } catch let error as APIError {
+            logError(error: error)
+            throw RepositoryError.networkError
+        } catch  {
+            throw RepositoryError.unknownError
+        }
+    }
     
 }
