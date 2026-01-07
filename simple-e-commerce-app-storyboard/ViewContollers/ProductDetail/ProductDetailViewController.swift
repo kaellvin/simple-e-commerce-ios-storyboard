@@ -36,11 +36,6 @@ class ProductDetailViewController: UIViewController {
         collectionView.dataSource = self
         //        collectionView.delegate = self
         
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = collectionView.bounds.size
-        }
-        
-        
         setupNavigationButtons()
         
         Task {
