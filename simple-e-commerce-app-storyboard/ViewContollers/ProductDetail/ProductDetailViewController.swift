@@ -32,16 +32,16 @@ class ProductDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bind()
-
+        
         collectionView.dataSource = self
-//        collectionView.delegate = self
+        //        collectionView.delegate = self
         
-//        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-//            layout.itemSize = collectionView.bounds.size
-//        }
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = collectionView.bounds.size
+        }
         
-        //navigationItem.hidesBackButton = true
         
+        setupNavigationButtons()
         
         Task {
             await viewModel.loadData(productId: id)
@@ -63,6 +63,36 @@ class ProductDetailViewController: UIViewController {
             .store(in: &cancellables)
     }
     
+    private func setupNavigationButtons() {
+        let backButtonAction = UIAction { [unowned self] action in
+            self.navigationController?.popViewController(animated: true)
+        }
+        
+        let cartButtonAction = UIAction { action in
+            //TODO:
+        }
+        
+        let backButton = createButtonItem(systemName: "chevron.left", uiAction: backButtonAction)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+        
+        let cartButton = createButtonItem(systemName: "cart", uiAction: cartButtonAction)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: cartButton)
+        //navigationItem.hidesBackButton = true
+    }
+    
+    private func createButtonItem(systemName: String, uiAction : UIAction) -> UIButton {
+        var config = UIButton.Configuration.bordered()
+        config.cornerStyle = .capsule
+        let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .regular, scale: .default)
+        config.image = UIImage(systemName: systemName, withConfiguration: imageConfig)
+        
+        config.baseForegroundColor = .white
+        config.baseBackgroundColor = .white.withAlphaComponent(0.2)
+        
+        return UIButton(configuration: config,primaryAction: uiAction)
+    }
+    
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         coordinator.animate(alongsideTransition: { [weak self] _ in
@@ -73,12 +103,12 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
+        
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-
+        
         layout.itemSize = collectionView.bounds.size
     }
-
+    
 }
 
 
@@ -86,7 +116,7 @@ extension ProductDetailViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.productDetail?.productImageUrls.count ?? 0
-      
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
