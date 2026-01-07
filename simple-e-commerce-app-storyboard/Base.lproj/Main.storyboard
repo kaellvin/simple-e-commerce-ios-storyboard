@@ -51,17 +51,17 @@
                                 <rect key="frame" x="0.0" y="206" width="393" height="529"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v0o-QB-yTW">
-                                    <size key="itemSize" width="393" height="564"/>
+                                    <size key="itemSize" width="393" height="529"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="h3c-MY-M8s" customClass="HomeCell" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="564"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="529"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="DZ0-h0-gOi">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="564"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="529"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5LR-Xv-HMY">
@@ -77,7 +77,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ek-Ua-RaY">
-                                                    <rect key="frame" x="8" y="556" width="377" height="0.0"/>
+                                                    <rect key="frame" x="8" y="521" width="377" height="0.0"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -96,7 +96,7 @@
                                                 <constraint firstItem="Vw6-n5-0zL" firstAttribute="top" secondItem="5LR-Xv-HMY" secondAttribute="bottom" constant="8" id="uW6-nV-33d"/>
                                             </constraints>
                                         </collectionViewCellContentView>
-                                        <size key="customSize" width="393" height="564"/>
+                                        <size key="customSize" width="393" height="529"/>
                                         <connections>
                                             <outlet property="productImageView" destination="5LR-Xv-HMY" id="H6T-Lf-kCc"/>
                                             <outlet property="productName" destination="Vw6-n5-0zL" id="riF-R6-ien"/>
