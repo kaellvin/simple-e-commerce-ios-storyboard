@@ -23,7 +23,7 @@ class ProductDetailViewModel {
     var selectedOptionGroupIdx =  -1
     var isAddToOptionExpanded = false
     var error:Error? = nil
-    var status: LoadingStatus = LoadingStatus.idle
+    @Published private(set) var status: LoadingStatus = LoadingStatus.idle
     var event: ProductDetailEvent?
     
     var currentPrice: Double {

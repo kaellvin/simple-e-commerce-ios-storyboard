@@ -10,6 +10,9 @@ import Combine
 
 class ProductDetailViewController: UIViewController {
     
+    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var productDetailContentView: UIView!
+    @IBOutlet weak var indicatorView: UIActivityIndicatorView!
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productDescription: UILabel!
@@ -31,6 +34,9 @@ class ProductDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        errorLabel.isHidden = true
+        productDetailContentView.isHidden = true
         bind()
         
         collectionView.dataSource = self
@@ -46,14 +52,34 @@ class ProductDetailViewController: UIViewController {
     private func bind() {
         viewModel
             .$productDetail
-            .sink { [weak self] productDetail in
+            .combineLatest(viewModel.$status)
+            .sink { [weak self] productDetail, status in
                 guard let self else { return }
-                guard let productDetail else { return }
+               
+                switch status {
+                case .idle, .loading:
+                    indicatorView.startAnimating()
+                case .success:
+                    indicatorView.stopAnimating()
+                    if let productDetail {
+                        self.collectionView.reloadData()
+                        
+                        self.productName.text = productDetail.name
+                        self.productDescription.text = productDetail.description
+                        
+                        productDetailContentView.isHidden = false
+                    }else {   
+                        errorLabel.text = "No matching product found."
+                        errorLabel.isHidden = false
+                    }
+                       
+                case .failure(_):
+                    indicatorView.stopAnimating()
+                    errorLabel.text = "Something wrong. Please try again later."
+                    errorLabel.isHidden = false
+                }
                 
-                self.collectionView.reloadData()
                 
-                self.productName.text = productDetail.name
-                self.productDescription.text = productDetail.description
             }
             .store(in: &cancellables)
     }
@@ -80,9 +106,6 @@ class ProductDetailViewController: UIViewController {
         config.cornerStyle = .capsule
         let imageConfig = UIImage.SymbolConfiguration(pointSize: 17, weight: .regular, scale: .default)
         config.image = UIImage(systemName: systemName, withConfiguration: imageConfig)
-        
-        config.baseForegroundColor = .white
-        config.baseBackgroundColor = .white.withAlphaComponent(0.2)
         
         return UIButton(configuration: config,primaryAction: uiAction)
     }
