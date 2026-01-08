@@ -17,7 +17,7 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productDescription: UILabel!
     
-    private var viewModel = ProductDetailViewModel(productRepository: DefaultProductRepository())
+    private let viewModel = ProductDetailViewModel(productRepository: DefaultProductRepository())
     private var cancellables = Set<AnyCancellable>()
     
     var id: String
@@ -127,6 +127,18 @@ class ProductDetailViewController: UIViewController {
         layout.itemSize = collectionView.bounds.size
     }
     
+    @IBAction func addToCartButtonClicked(_ sender: Any) {
+        guard let productDetail = viewModel.productDetail else { return }
+        
+        let productDetailSheetVC = storyboard!.instantiateViewController(identifier: "ProductDetailSheetViewController") { coder in
+            ProductDetailSheetViewController(coder: coder, productDetail: productDetail)
+        }
+
+        if let sheet = productDetailSheetVC.sheetPresentationController {
+            sheet.prefersGrabberVisible = true
+        }
+        present(productDetailSheetVC, animated: true)
+    }
 }
 
 

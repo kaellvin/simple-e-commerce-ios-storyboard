@@ -214,6 +214,9 @@
                                         <rect key="frame" x="16" y="733.66666666666663" width="361" height="50.333333333333371"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Add To Cart" buttonSize="large"/>
+                                        <connections>
+                                            <action selector="addToCartButtonClicked:" destination="1qz-sf-uGV" eventType="touchUpInside" id="R36-Mo-BVY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -234,8 +237,8 @@
                                 <rect key="frame" x="186" y="416" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inR-M0-TKr">
-                                <rect key="frame" x="176" y="416" width="41.333333333333343" height="20.333333333333314"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="inR-M0-TKr">
+                                <rect key="frame" x="196.66666666666666" y="426" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -264,6 +267,80 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="APN-Ne-TtN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="310.68702290076334" y="1450"/>
+        </scene>
+        <!--Product Detail Sheet View Controller-->
+        <scene sceneID="M9o-lt-sV9">
+            <objects>
+                <viewController storyboardIdentifier="ProductDetailSheetViewController" id="eI7-QQ-XTL" customClass="ProductDetailSheetViewController" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="TaJ-cm-YRy">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKt-fE-jpR">
+                                <rect key="frame" x="16" y="24" width="361" height="736"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fk7-eE-GhK" customClass="RoundedImageView" customModule="simple_e_commerce_app_storyboard" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="fk7-eE-GhK" secondAttribute="height" multiplier="1:1" id="KWh-6j-9Zn"/>
+                                            <constraint firstAttribute="width" constant="100" id="QT1-jb-G01"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nCL-Id-P2c">
+                                        <rect key="frame" x="116" y="0.0" width="245" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylp-BL-htC">
+                                        <rect key="frame" x="116" y="21" width="245" height="21"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2MF-EI-CZj">
+                                        <rect key="frame" x="0.0" y="116" width="361" height="1"/>
+                                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="1" id="n92-fb-zdB"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="fk7-eE-GhK" firstAttribute="top" secondItem="jKt-fE-jpR" secondAttribute="top" id="14B-3I-j2B"/>
+                                    <constraint firstItem="ylp-BL-htC" firstAttribute="leading" secondItem="fk7-eE-GhK" secondAttribute="trailing" constant="16" id="D50-Nz-4Dn"/>
+                                    <constraint firstItem="nCL-Id-P2c" firstAttribute="leading" secondItem="fk7-eE-GhK" secondAttribute="trailing" constant="16" id="OMG-d1-nWe"/>
+                                    <constraint firstAttribute="trailing" secondItem="ylp-BL-htC" secondAttribute="trailing" id="QaO-gE-Phj"/>
+                                    <constraint firstItem="ylp-BL-htC" firstAttribute="top" secondItem="nCL-Id-P2c" secondAttribute="bottom" id="YX5-Ne-Uh6"/>
+                                    <constraint firstItem="2MF-EI-CZj" firstAttribute="leading" secondItem="jKt-fE-jpR" secondAttribute="leading" id="ZRZ-5v-10F"/>
+                                    <constraint firstAttribute="trailing" secondItem="2MF-EI-CZj" secondAttribute="trailing" id="bZv-5F-ngi"/>
+                                    <constraint firstItem="nCL-Id-P2c" firstAttribute="top" secondItem="jKt-fE-jpR" secondAttribute="top" id="dHF-eg-o1c"/>
+                                    <constraint firstItem="2MF-EI-CZj" firstAttribute="top" secondItem="fk7-eE-GhK" secondAttribute="bottom" constant="16" id="eeI-rv-JAk"/>
+                                    <constraint firstItem="fk7-eE-GhK" firstAttribute="leading" secondItem="jKt-fE-jpR" secondAttribute="leading" id="o6X-xE-W7e"/>
+                                    <constraint firstAttribute="trailing" secondItem="nCL-Id-P2c" secondAttribute="trailing" id="ocE-gQ-6TM"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="hLR-RJ-31s"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jKt-fE-jpR" firstAttribute="trailing" secondItem="TaJ-cm-YRy" secondAttribute="trailing" constant="-16" id="AwI-cV-Lbs"/>
+                            <constraint firstItem="jKt-fE-jpR" firstAttribute="top" secondItem="TaJ-cm-YRy" secondAttribute="top" constant="24" id="qrc-we-yR8"/>
+                            <constraint firstItem="jKt-fE-jpR" firstAttribute="leading" secondItem="TaJ-cm-YRy" secondAttribute="leading" constant="16" id="tnt-BR-SuJ"/>
+                            <constraint firstItem="jKt-fE-jpR" firstAttribute="bottom" secondItem="hLR-RJ-31s" secondAttribute="bottom" constant="-24" id="xEQ-h1-RYm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="LzX-i5-12l"/>
+                    <connections>
+                        <outlet property="mainImageView" destination="fk7-eE-GhK" id="o4h-k2-th5"/>
+                        <outlet property="priceLabel" destination="nCL-Id-P2c" id="U7Q-Rj-l7K"/>
+                        <outlet property="stockLabel" destination="ylp-BL-htC" id="PYp-6I-TXp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Mib-Qz-Qjc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1209.9236641221373" y="1450"/>
         </scene>
         <!--Cart-->
         <scene sceneID="0dq-wz-f4D">
@@ -446,6 +523,9 @@
         <image name="cart" catalog="system" width="128" height="102"/>
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="person.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058820000003" green="0.77647058820000003" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

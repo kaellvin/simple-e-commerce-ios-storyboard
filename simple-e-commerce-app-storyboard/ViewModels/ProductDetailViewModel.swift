@@ -16,24 +16,24 @@ class ProductDetailViewModel {
     }
     
     @Published private(set) var productDetail: ProductDetail?
-    var activeVariant: ProductVariant = ProductVariant.empty
-    var pvOptionList: [PVOption] = []
+//    var activeVariant: ProductVariant = ProductVariant.empty
+//    var pvOptionList: [PVOption] = []
     var quantity = 1
-    var mainImageUrl = ""
+//    var mainImageUrl = ""
     var selectedOptionGroupIdx =  -1
     var isAddToOptionExpanded = false
     var error:Error? = nil
     @Published private(set) var status: LoadingStatus = LoadingStatus.idle
     var event: ProductDetailEvent?
     
-    var currentPrice: Double {
-        let price = Double(activeVariant.price) ?? 0.0
-        return price * Double(quantity)
-    }
-    
-    var stock: Int {
-        return activeVariant.quantity
-    }
+//    var currentPrice: Double {
+//        let price = Double(activeVariant.price) ?? 0.0
+//        return price * Double(quantity)
+//    }
+//    
+//    var stock: Int {
+//        return activeVariant.quantity
+//    }
     
     func loadData(productId: String) async {
         status = LoadingStatus.loading
@@ -41,14 +41,14 @@ class ProductDetailViewModel {
             productDetail = try await productRepository.getProduct(productId: productId)
             
             if let productDetail {
-                let defaultVariant = productDetail.productVariants.first(where: { $0.id == productDetail.defaultVariantId })!
-                let pvOptionList = initPvOptionList(productDetail: productDetail, defaultVariant: defaultVariant)
-                
-                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail,pv: defaultVariant)
-                
-                activeVariant = defaultVariant
-                self.pvOptionList = pvOptionList
-                mainImageUrl = optionValueImage.url
+//                let defaultVariant = productDetail.productVariants.first(where: { $0.id == productDetail.defaultVariantId })!
+//                let pvOptionList = initPvOptionList(productDetail: productDetail, defaultVariant: defaultVariant)
+//                
+//                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail,pv: defaultVariant)
+//                
+//                activeVariant = defaultVariant
+//                self.pvOptionList = pvOptionList
+//                mainImageUrl = optionValueImage.url
                 
             }
             status = LoadingStatus.success
@@ -166,86 +166,86 @@ class ProductDetailViewModel {
     
     func onOptionSelected(chipGroupIdx: Int, chipTag: ChipTag){
         
-        if let productDetail {
-            if chipGroupIdx == 0 {
-                //find all option combinations that contain selected option
-                let productVariantIds = productDetail.productVariants
-                    .flatMap { $0.variantOptions }
-                    .filter {chipTag.optionValue.id == $0.optionValueId}
-                    .map {$0.productVariantId}
-                
-                let optionValueIds = productDetail.productVariants
-                    .flatMap { $0.variantOptions }
-                    .filter { productVariantIds.contains($0.productVariantId) }
-                    .map { $0.optionValueId }
-                
-                //find first product variant that contain selected option
-                let matchedProductVariant = productDetail.productVariants.first { productVariant in
-                    productVariant.variantOptions.contains{$0.optionValueId == chipTag.optionValue.id}
-                }!
-                
-                let pvOptionValueIds = matchedProductVariant.variantOptions.map { $0.optionValueId }
-            
-                let newPvOptionList = pvOptionList.map {op in
-                    var newOp = op
-                    newOp.values = op.values.map {value in
-                        var newValue = value
-                        newValue.isSelected = pvOptionValueIds.contains(value.optionValue.id)
-                        newValue.isWithinSelection = optionValueIds.contains(value.optionValue.id) || op.id == chipTag.pvOptionId
-                        return newValue
-                    }
-                    return newOp
-                    
-                }
-                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail, pv: matchedProductVariant)
-                
-                activeVariant = matchedProductVariant
-                pvOptionList = newPvOptionList
-                quantity = 1
-                mainImageUrl = optionValueImage.url
-                selectedOptionGroupIdx = chipGroupIdx
-                
-            }else {
-                //update only option value within same type
-                let newPvOptionList = pvOptionList.map {op in
-                    var newOp = op
-                    newOp.values = op.values.map {value in
-                        var newValue = value
-                        newValue.isSelected = op.id == chipTag.pvOptionId ? value.optionValue.name == chipTag.optionValue.name : value.isSelected
-                        return newValue
-                    }
-                    return newOp
-                }
-                
-                //extract product variant that matches all selected options
-                let selectedOptionValueIds = newPvOptionList.flatMap { pvOption in
-                    pvOption.values
-                        .filter { $0.isSelected }
-                        .map {$0.optionValue.id}
-                }
-                
-                let newSelectedProductVariant = productDetail.productVariants.first{ productVariant in
-                    productVariant.variantOptions.allSatisfy { selectedOptionValueIds.contains($0.optionValueId) }
-                }!
-                
-                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail, pv: newSelectedProductVariant)
-                
-                activeVariant = newSelectedProductVariant
-                pvOptionList = newPvOptionList
-                quantity = 1
-                mainImageUrl = optionValueImage.url
-                selectedOptionGroupIdx = chipGroupIdx
-            }
-        }
+//        if let productDetail {
+//            if chipGroupIdx == 0 {
+//                //find all option combinations that contain selected option
+//                let productVariantIds = productDetail.productVariants
+//                    .flatMap { $0.variantOptions }
+//                    .filter {chipTag.optionValue.id == $0.optionValueId}
+//                    .map {$0.productVariantId}
+//                
+//                let optionValueIds = productDetail.productVariants
+//                    .flatMap { $0.variantOptions }
+//                    .filter { productVariantIds.contains($0.productVariantId) }
+//                    .map { $0.optionValueId }
+//                
+//                //find first product variant that contain selected option
+//                let matchedProductVariant = productDetail.productVariants.first { productVariant in
+//                    productVariant.variantOptions.contains{$0.optionValueId == chipTag.optionValue.id}
+//                }!
+//                
+//                let pvOptionValueIds = matchedProductVariant.variantOptions.map { $0.optionValueId }
+//            
+//                let newPvOptionList = pvOptionList.map {op in
+//                    var newOp = op
+//                    newOp.values = op.values.map {value in
+//                        var newValue = value
+//                        newValue.isSelected = pvOptionValueIds.contains(value.optionValue.id)
+//                        newValue.isWithinSelection = optionValueIds.contains(value.optionValue.id) || op.id == chipTag.pvOptionId
+//                        return newValue
+//                    }
+//                    return newOp
+//                    
+//                }
+//                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail, pv: matchedProductVariant)
+//                
+//                activeVariant = matchedProductVariant
+//                pvOptionList = newPvOptionList
+//                quantity = 1
+//                mainImageUrl = optionValueImage.url
+//                selectedOptionGroupIdx = chipGroupIdx
+//                
+//            }else {
+//                //update only option value within same type
+//                let newPvOptionList = pvOptionList.map {op in
+//                    var newOp = op
+//                    newOp.values = op.values.map {value in
+//                        var newValue = value
+//                        newValue.isSelected = op.id == chipTag.pvOptionId ? value.optionValue.name == chipTag.optionValue.name : value.isSelected
+//                        return newValue
+//                    }
+//                    return newOp
+//                }
+//                
+//                //extract product variant that matches all selected options
+//                let selectedOptionValueIds = newPvOptionList.flatMap { pvOption in
+//                    pvOption.values
+//                        .filter { $0.isSelected }
+//                        .map {$0.optionValue.id}
+//                }
+//                
+//                let newSelectedProductVariant = productDetail.productVariants.first{ productVariant in
+//                    productVariant.variantOptions.allSatisfy { selectedOptionValueIds.contains($0.optionValueId) }
+//                }!
+//                
+//                let optionValueImage = getMatchedOptionValueImage(productDetail: productDetail, pv: newSelectedProductVariant)
+//                
+//                activeVariant = newSelectedProductVariant
+//                pvOptionList = newPvOptionList
+//                quantity = 1
+//                mainImageUrl = optionValueImage.url
+//                selectedOptionGroupIdx = chipGroupIdx
+//            }
+//        }
         
     }
     
     func setQuantity(isAdding: Bool = true){
-        if isAdding {
-            quantity = quantity < activeVariant.quantity ? quantity + 1 : quantity
-        }else{
-            quantity -= 1
-        }
+//        if isAdding {
+//            quantity = quantity < activeVariant.quantity ? quantity + 1 : quantity
+//        }else{
+//            quantity -= 1
+//        }
     }
     
 //    func validateBeforeAddingCartItem(cart: Cart?) {
